@@ -1,1 +1,38 @@
+import os
+import csv
+# Prepare the analysis results
+csvpath = os.path.join("Resources", "election_data.csv")
+total_votes = 0
+candidates = {}
+winner = ""
+winning_count = 0
+with open(output_file, "w", newline='') as datafile:
 
+writer = csv.writer(datafile)
+# Print results
+print("Election Results")
+print("-------------------------")
+print(f"Total Votes: {total_votes}")
+print("-------------------------")
+
+ # Determine the winner by comparing vote counts
+    if votes > winning_count:
+        winning_count = votes
+        winner = candidate
+
+print("-------------------------")
+print(f"Winner: {winner}")
+print("-------------------------")
+# Export results to a text file
+output_path = os.path.join("analysis", "election_results.txt")
+with open(output_path, "w") as txtfile:
+    txtfile.write("Election Results\n")
+    txtfile.write("-------------------------\n")
+    txtfile.write(f"Total Votes: {total_votes}\n")
+    txtfile.write("-------------------------\n")
+    for candidate, votes in candidates.items():
+    percentage = (votes / total_votes) * 100
+ txtfile.write(f"{candidate}: {percentage:.3f}% ({votes})\n")
+    txtfile.write("-------------------------\n")
+    txtfile.write(f"Winner: {winner}\n")
+    txtfile.write("-------------------------\n")
