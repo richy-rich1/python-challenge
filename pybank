@@ -1,1 +1,34 @@
+import os
+import csv
+budget_data_csv = os.path.join("..", 'Resourcces', 'budget_data.csv')
+open(budget_data_csv)csvfile:
+    csvreader = csv.reader(csvfile, delimiter=',')
+#file contains Date and Profit/Losses
+title = "Financial Analysis"
 
+total_Months = (Date)
+
+total = sum (Profit/Losses)
+
+average_Change = average(Profit/Losses)
+
+net_Total_Profit =
+
+net_Total_Losses =
+
+greatest_increase =
+
+greatest_decrease =
+#save the output file path
+output_file = os.path.join("analysis.csv")
+#open the output file, create a header row, and then write the object to the csv
+with open(output_file, "w", newline='') as datafile:
+
+writer = csv.writer(datafile)
+print("Financial Analysis")
+print("--------------")
+print("Total Months")
+print("Total")
+print( 'Average change')
+print( "Greatest Increase in Profits")
+print("Greatest Decrease in Profits")
