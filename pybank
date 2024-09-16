@@ -1,35 +1,44 @@
-import os
 import csv
-budget_data_csv = os.path.join("..", 'Resourcces', 'budget_data.csv')
-open(budget_data_csv)csvfile:
-    csvreader = csv.reader(csvfile, delimiter=',')
-#file contains Date and Profit/Losses
-title = "Financial Analysis"
-
-total_Months = (Date)
-
-total = sum (Profit/Losses)
-
-average_Change = average(Profit/Losses)
-
-net_Total_Profit =
-
-net_Total_Losses =
-
-greatest_increase =
-
-greatest_decrease =
-#save the output file path
-output_file = os.path.join("analysis.csv")
-#open the output file, create a header row, and then write the object to the csv
-with open(output_file, "w", newline='') as datafile:
-
-writer = csv.writer(datafile)
+import os
+ # Assignt our variables
+budget_data = os.path.join("Resources","budget_data.csv")
+total_months = 0
+change_in_months = []
+net_change_list = []
+total_net = 0
+greatest_increase = ["", 0]
+greatest_decrease = ["", float(9999999999999999999)]
+with open (budget_data) as py_bank:
+    reader= csv.reader(py_bank)
+    header = next(reader)
+    first_row = next(reader)
+    total_months += 1
+    total_net += int(first_row[1])
+    previous_net = int(first_row[1])
+    for financial_analysis in reader:
+       total_months +=1
+       total_net += int(financial_analysis[1])
+       net_change = int(financial_analysis[1]) - previous_net
+       net_change_list += [net_change]
+       if net_change > greatest_increase[1]:
+           greatest_increase[0] = financial_analysis[0]
+           greatest_increase[1] = net_change
+       if net_change < greatest_decrease[1]:
+           greatest_decrease[0] = financial_analysis[0]
+           greatest_increase[1] = net_change
+       if len(net_change_list) > 0 :
+          average_change = sum(net_change_list) / len(net_change_list)
+       else:
+           average_change = 0
 print("Financial Analysis")
-print("--------------")
-print("Total Months")
-print("Total")
-print( 'Average change')
-print( "Greatest Increase in Profits")
-print("Greatest Decrease in Profits")
-
+print("-------------------------------------------------------------------------")
+# Calculate total months
+print(f"Total Months: {total_months}")
+# Calculate total profit loss
+print(f"Total: ${total_net}")
+# Calculate the changes
+print(f"Average Change: ${average_change:.2f}")
+# Calculate the greatest increase in profits
+print(f"Greatest Increase in Profits: {greatest_increase[0]} (${greatest_increase[1]})")
+# Calculate the greatest increase in profits
+print(f"Greatest Decrease in Profits: {greatest_decrease[0]} (${greatest_decrease[1]})")
